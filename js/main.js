@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
   CookieBanner.init();
   SmoothScroll.init();
   ActiveNav.init();
+  InstagramAutoPause.init();
 });
 
 /* ============================================
@@ -443,5 +444,45 @@ const ActiveNav = {
         ticking = true;
       }
     }, { passive: true });
+  }
+};
+
+/* ============================================
+   INSTAGRAM AUTO-PAUSE
+   Quando o usuário dá play em um vídeo, pausa
+   os demais recarregando seus iframes.
+   Usa window.blur: ao clicar dentro de um iframe
+   cross-origin, a janela perde foco e
+   document.activeElement aponta para o iframe ativo.
+   ============================================ */
+const InstagramAutoPause = {
+  init() {
+    // Aguarda embed.js do Instagram processar os blockquotes
+    const setup = () => {
+      window.addEventListener('blur', () => {
+        // Pequeno delay para o browser atualizar activeElement
+        requestAnimationFrame(() => {
+          const active = document.activeElement;
+          if (!active || active.tagName !== 'IFRAME') return;
+          if (!active.closest('.instagram-embed-wrapper')) return;
+
+          document.querySelectorAll('.instagram-embed-wrapper iframe').forEach(iframe => {
+            if (iframe === active) return;
+
+            // Recarrega o iframe para forçar pausa (única forma cross-origin)
+            const src = iframe.src;
+            iframe.src = '';
+            setTimeout(() => { iframe.src = src; }, 50);
+          });
+        });
+      });
+    };
+
+    // Garante que o embed.js já terminou de processar
+    if (document.readyState === 'complete') {
+      setup();
+    } else {
+      window.addEventListener('load', setup);
+    }
   }
 };
