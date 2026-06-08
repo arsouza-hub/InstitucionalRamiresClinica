@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
@@ -98,18 +98,13 @@
        ============================================ -->
   <header id="main-header" class="header header-subpage" role="banner">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex items-center justify-between h-20 lg:h-24">
+      <div class="flex items-center justify-between h-20 lg:h-24 overflow-visible relative">
         <!-- Logo -->
-        <a href="../index.html" class="flex items-center gap-3 z-50 relative" aria-label="Dra. Érika Ramires - Página Inicial">
-          <svg class="w-12 h-12 lg:w-14 lg:h-14" viewBox="0 0 200 130" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M160,100 Q170,100 175,92 Q185,92 188,82 Q200,78 195,65 Q198,52 185,48 Q182,35 168,35 Q162,22 148,25 Q138,15 125,22 Q115,12 100,18 Q88,8 75,18 Q62,12 52,22 Q40,18 35,30 Q22,28 18,42 Q5,45 8,58 Q2,65 10,75 Q5,85 15,90 Q12,100 25,100 Z" class="fill-white header-logo-cloud transition-colors duration-300"/>
-            <path d="M142,38 L145,28 L148,38 L158,41 L148,44 L145,54 L142,44 L132,41 Z" class="fill-white header-logo-star transition-colors duration-300" opacity="0.7"/>
-          </svg>
-          <div>
-            <div class="font-heading font-bold text-white text-base lg:text-lg leading-tight transition-colors duration-300 header-logo-text">Dra. Érika Ramires</div>
-            <div class="text-white/70 text-xs lg:text-sm font-medium tracking-wider uppercase transition-colors duration-300 header-logo-sub">Odontologia Infantil</div>
-          </div>
+        <a href="../index.html" class="absolute left-0 top-1/2 -translate-y-1/2 z-50" aria-label="Dra. Érika Ramires - Página Inicial">
+          <img src="../img/logo_new.png" alt="Logo Dra. Érika Ramires" class="w-48 h-48 lg:w-56 lg:h-56 object-contain" style="filter: drop-shadow(0 0 8px rgba(255,255,255,0.95)) drop-shadow(0 0 16px rgba(255,255,255,0.6));">
         </a>
+        <!-- Espaçador invisível para os itens de nav não sobreporem o logo -->
+        <div class="w-52 lg:w-60 flex-shrink-0"></div>
 
         <!-- Desktop Navigation -->
         <nav class="hidden lg:flex items-center gap-8" aria-label="Navegação principal">
