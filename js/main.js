@@ -449,40 +449,54 @@ const ActiveNav = {
 
 /* ============================================
    INSTAGRAM AUTO-PAUSE
-   Quando o usuário dá play em um vídeo, pausa
-   os demais recarregando seus iframes.
-   Usa window.blur: ao clicar dentro de um iframe
-   cross-origin, a janela perde foco e
-   document.activeElement aponta para o iframe ativo.
+   Overlay transparente sobre cada embed intercepta
+   o clique antes que chegue ao iframe cross-origin.
+   Ao clicar num vídeo: recarrega os outros (pausa)
+   e desativa o próprio overlay (libera interação).
    ============================================ */
 const InstagramAutoPause = {
   init() {
-    // Aguarda embed.js do Instagram processar os blockquotes
-    const setup = () => {
-      window.addEventListener('blur', () => {
-        // Pequeno delay para o browser atualizar activeElement
-        requestAnimationFrame(() => {
-          const active = document.activeElement;
-          if (!active || active.tagName !== 'IFRAME') return;
-          if (!active.closest('.instagram-embed-wrapper')) return;
+    const section = document.getElementById('instagram');
+    if (!section) return;
 
-          document.querySelectorAll('.instagram-embed-wrapper iframe').forEach(iframe => {
-            if (iframe === active) return;
-
-            // Recarrega o iframe para forçar pausa (única forma cross-origin)
-            const src = iframe.src;
-            iframe.src = '';
-            setTimeout(() => { iframe.src = src; }, 50);
-          });
-        });
+    // MutationObserver detecta quando embed.js cria os iframes
+    const observer = new MutationObserver(() => {
+      section.querySelectorAll('.instagram-embed-wrapper').forEach(wrapper => {
+        if (!wrapper.querySelector('.ig-overlay')) {
+          this.addOverlay(wrapper);
+        }
       });
-    };
+    });
+    observer.observe(section, { childList: true, subtree: true });
+  },
 
-    // Garante que o embed.js já terminou de processar
-    if (document.readyState === 'complete') {
-      setup();
-    } else {
-      window.addEventListener('load', setup);
-    }
+  addOverlay(wrapper) {
+    wrapper.style.position = 'relative';
+
+    const overlay = document.createElement('div');
+    overlay.className = 'ig-overlay';
+    overlay.style.cssText = 'position:absolute;inset:0;z-index:100;cursor:pointer;';
+    wrapper.appendChild(overlay);
+
+    overlay.addEventListener('click', () => {
+      // Desativa overlay deste vídeo — libera interação com o iframe
+      overlay.style.pointerEvents = 'none';
+
+      // Pausa todos os outros: recarrega iframe + reativa overlay
+      document.querySelectorAll('.instagram-embed-wrapper').forEach(other => {
+        if (other === wrapper) return;
+        const iframe = other.querySelector('iframe');
+        const otherOverlay = other.querySelector('.ig-overlay');
+        if (iframe) this.reloadIframe(iframe);
+        if (otherOverlay) otherOverlay.style.pointerEvents = 'auto';
+      });
+    });
+  },
+
+  reloadIframe(iframe) {
+    const src = iframe.src;
+    if (!src || src === 'about:blank') return;
+    iframe.src = 'about:blank';
+    setTimeout(() => { iframe.src = src; }, 150);
   }
 };
