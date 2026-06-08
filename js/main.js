@@ -449,51 +449,49 @@ const ActiveNav = {
 
 /* ============================================
    INSTAGRAM AUTO-PAUSE
-   Overlay transparente sobre cada embed intercepta
-   o clique antes que chegue ao iframe cross-origin.
-   Ao clicar num vídeo: recarrega os outros (pausa)
-   e desativa o próprio overlay (libera interação).
+   Detecta foco no <iframe> do DOM pai (evento não
+   bloqueado por cross-origin) + window.blur como
+   backup. Um único clique inicia o novo vídeo e
+   pausa automaticamente o anterior.
    ============================================ */
 const InstagramAutoPause = {
+  activeWrapper: null,
+
   init() {
     const section = document.getElementById('instagram');
     if (!section) return;
 
-    // MutationObserver detecta quando embed.js cria os iframes
+    // Observa quando embed.js cria os iframes e registra listeners
     const observer = new MutationObserver(() => {
       section.querySelectorAll('.instagram-embed-wrapper').forEach(wrapper => {
-        if (!wrapper.querySelector('.ig-overlay')) {
-          this.addOverlay(wrapper);
+        const iframe = wrapper.querySelector('iframe');
+        if (iframe && !iframe.dataset.igPause) {
+          iframe.dataset.igPause = '1';
+          iframe.addEventListener('focus', () => this.onActive(wrapper));
         }
       });
     });
     observer.observe(section, { childList: true, subtree: true });
+
+    // Backup: window.blur também detecta quando o foco entra num iframe
+    window.addEventListener('blur', () => {
+      setTimeout(() => {
+        const active = document.activeElement;
+        if (!active || active.tagName !== 'IFRAME') return;
+        const wrapper = active.closest('.instagram-embed-wrapper');
+        if (wrapper) this.onActive(wrapper);
+      }, 100);
+    });
   },
 
-  addOverlay(wrapper) {
-    wrapper.style.position = 'relative';
-
-    const overlay = document.createElement('div');
-    overlay.className = 'ig-overlay';
-    overlay.style.cssText = 'position:absolute;inset:0;z-index:100;cursor:pointer;';
-    wrapper.appendChild(overlay);
-
-    overlay.addEventListener('click', () => {
-      // Desativa overlay deste vídeo — libera interação com o iframe
-      overlay.style.pointerEvents = 'none';
-
-      // Pausa SOMENTE o vídeo que estava ativo (overlay já desativado)
-      // Vídeos que nunca foram clicados têm overlay ativo — não piscam
-      document.querySelectorAll('.instagram-embed-wrapper').forEach(other => {
-        if (other === wrapper) return;
-        const otherOverlay = other.querySelector('.ig-overlay');
-        if (otherOverlay && otherOverlay.style.pointerEvents === 'none') {
-          const iframe = other.querySelector('iframe');
-          if (iframe) this.reloadIframe(iframe);
-          otherOverlay.style.pointerEvents = 'auto';
-        }
-      });
-    });
+  onActive(wrapper) {
+    if (this.activeWrapper === wrapper) return;
+    const prev = this.activeWrapper;
+    this.activeWrapper = wrapper;
+    if (prev) {
+      const iframe = prev.querySelector('iframe');
+      if (iframe) this.reloadIframe(iframe);
+    }
   },
 
   reloadIframe(iframe) {
