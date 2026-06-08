@@ -482,13 +482,16 @@ const InstagramAutoPause = {
       // Desativa overlay deste vídeo — libera interação com o iframe
       overlay.style.pointerEvents = 'none';
 
-      // Pausa todos os outros: recarrega iframe + reativa overlay
+      // Pausa SOMENTE o vídeo que estava ativo (overlay já desativado)
+      // Vídeos que nunca foram clicados têm overlay ativo — não piscam
       document.querySelectorAll('.instagram-embed-wrapper').forEach(other => {
         if (other === wrapper) return;
-        const iframe = other.querySelector('iframe');
         const otherOverlay = other.querySelector('.ig-overlay');
-        if (iframe) this.reloadIframe(iframe);
-        if (otherOverlay) otherOverlay.style.pointerEvents = 'auto';
+        if (otherOverlay && otherOverlay.style.pointerEvents === 'none') {
+          const iframe = other.querySelector('iframe');
+          if (iframe) this.reloadIframe(iframe);
+          otherOverlay.style.pointerEvents = 'auto';
+        }
       });
     });
   },
