@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
@@ -11,32 +11,36 @@
   <meta name="keywords" content="odontopediatra, odontologia infantil, dentista infantil, odontopediatria, atendimento infantil, dentista para autistas, odontologia para necessidades especiais, odontopediatra especializada, saúde bucal infantil, dentista Santos SP">
   <meta name="author" content="Dra. Érika Ramires">
   <meta name="robots" content="index, follow, max-image-preview:large">
-  <link rel="canonical" href="https://www.draerikaramires.com.br/">
+  <link rel="canonical" href="https://ramiresclinicaintegrada.com.br/">
 
   <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:locale" content="pt_BR">
-  <meta property="og:site_name" content="Dra. Érika Ramires - Odontologia Infantil">
+  <meta property="og:site_name" content="Ramires Clínica Integrada">
   <meta property="og:title" content="Dra. Érika Ramires | Odontopediatra em Santos - Atendimento Humanizado">
   <meta property="og:description" content="Odontopediatra especializada em crianças e pacientes com necessidades especiais. Atendimento acolhedor e inclusivo em Santos/SP.">
-  <meta property="og:url" content="https://www.draerikaramires.com.br/">
-  <meta property="og:image" content="https://www.draerikaramires.com.br/img/og-image.jpg">
+  <meta property="og:url" content="https://ramiresclinicaintegrada.com.br/">
+  <meta property="og:image" content="https://ramiresclinicaintegrada.com.br/img/og-image.jpg">
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Dra. Érika Ramires | Odontopediatra em Santos">
   <meta name="twitter:description" content="Odontopediatra especializada em crianças e pacientes com necessidades especiais.">
 
-  <!-- Schema.org — MedicalClinic -->
+  <!-- Schema.org — Dentist + LocalBusiness + MedicalBusiness -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "MedicalClinic",
-    "name": "Dra. Érika Ramires - Odontologia Infantil",
-    "alternateName": "Ramires Clínica Integrada",
-    "description": "Clínica de odontopediatria especializada em atendimento humanizado para crianças e pacientes pediátricos com necessidades especiais.",
-    "url": "https://www.draerikaramires.com.br",
-    "telephone": "+5513997705883",
+    "@type": ["Dentist", "MedicalBusiness", "LocalBusiness"],
+    "@id": "https://ramiresclinicaintegrada.com.br/#clinic",
+    "name": "Ramires Clínica Integrada",
+    "alternateName": "Dra. Érika Ramires - Odontopediatria",
+    "description": "Clínica odontopediátrica especializada em Santos/SP. Atendimento humanizado para crianças, bebês e pacientes com TEA, Síndrome de Down e necessidades especiais.",
+    "url": "https://ramiresclinicaintegrada.com.br",
+    "telephone": "+55-13-99770-5883",
+    "priceRange": "$$",
+    "image": "https://ramiresclinicaintegrada.com.br/img/logo_new.png",
+    "logo": "https://ramiresclinicaintegrada.com.br/img/logo_new.png",
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "Av. Senador Feijó, 686 - Sala 1026, The Blue Shopping",
@@ -47,41 +51,77 @@
     },
     "geo": {
       "@type": "GeoCoordinates",
-      "latitude": "-23.9618",
-      "longitude": "-46.3322"
+      "latitude": -23.9618,
+      "longitude": -46.3322
     },
     "openingHoursSpecification": [
-      { "@type": "OpeningHoursSpecification", "dayOfWeek": "Tuesday", "opens": "15:30", "closes": "19:30" },
-      { "@type": "OpeningHoursSpecification", "dayOfWeek": "Wednesday", "opens": "15:30", "closes": "19:30" },
-      { "@type": "OpeningHoursSpecification", "dayOfWeek": "Thursday", "opens": "15:30", "closes": "19:30" },
-      { "@type": "OpeningHoursSpecification", "dayOfWeek": "Friday", "opens": "15:30", "closes": "19:30" },
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Tuesday","Wednesday","Thursday","Friday"], "opens": "15:30", "closes": "19:30" },
       { "@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "09:00", "closes": "13:00" }
     ],
     "medicalSpecialty": "Pediatric Dentistry",
-    "priceRange": "$$",
-    "image": "https://www.draerikaramires.com.br/img/clinica.jpg",
-    "sameAs": [
-      "https://www.instagram.com/draerikaramires/"
-    ]
+    "currenciesAccepted": "BRL",
+    "paymentAccepted": "Dinheiro, Cartão de Crédito, Cartão de Débito, PIX",
+    "hasMap": "https://maps.google.com/?q=Av.+Senador+Feijó+686+Santos+SP",
+    "areaServed": [
+      {"@type": "City", "name": "Santos"},
+      {"@type": "City", "name": "São Vicente"},
+      {"@type": "City", "name": "Praia Grande"},
+      {"@type": "City", "name": "Guarujá"},
+      {"@type": "City", "name": "Cubatão"},
+      {"@type": "City", "name": "Bertioga"}
+    ],
+    "serviceType": [
+      "Odontopediatria",
+      "Atendimento para autismo (TEA)",
+      "Atendimento para Síndrome de Down",
+      "Odontologia para pacientes com necessidades especiais",
+      "Prevenção odontológica infantil",
+      "Primeira consulta odontológica",
+      "Tratamentos restauradores infantis",
+      "Acompanhamento bucal gestacional e neonatal"
+    ],
+    "employee": {
+      "@type": "Person",
+      "@id": "https://ramiresclinicaintegrada.com.br/#dra-erika",
+      "name": "Érika Ramires",
+      "jobTitle": "Odontopediatra",
+      "identifier": {
+        "@type": "PropertyValue",
+        "name": "CRO-SP",
+        "value": "116193"
+      },
+      "image": "https://ramiresclinicaintegrada.com.br/img/dra-erika.jpg",
+      "sameAs": ["https://www.instagram.com/draerikaramires"]
+    },
+    "sameAs": ["https://www.instagram.com/draerikaramires"]
   }
   </script>
 
-  <!-- Schema.org — Dentist -->
+  <!-- Schema.org — Person (Dra. Érika Ramires) -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "Dentist",
-    "name": "Dra. Érika Ramires",
-    "description": "Odontopediatra especializada em atendimento infantil humanizado e pacientes com necessidades especiais.",
-    "medicalSpecialty": "Pediatric Dentistry",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "Av. Senador Feijó, 686 - Sala 1026",
-      "addressLocality": "Santos",
-      "addressRegion": "SP",
-      "postalCode": "11015-504"
+    "@type": "Person",
+    "@id": "https://ramiresclinicaintegrada.com.br/#dra-erika",
+    "name": "Érika Ramires",
+    "givenName": "Érika",
+    "familyName": "Ramires",
+    "jobTitle": "Odontopediatra",
+    "description": "Odontopediatra especializada em atendimento infantil humanizado e pacientes com TEA, Síndrome de Down e necessidades especiais em Santos/SP.",
+    "identifier": {
+      "@type": "PropertyValue",
+      "name": "CRO-SP",
+      "value": "116193"
     },
-    "telephone": "+5513997705883"
+    "worksFor": {
+      "@type": "Dentist",
+      "@id": "https://ramiresclinicaintegrada.com.br/#clinic",
+      "name": "Ramires Clínica Integrada"
+    },
+    "url": "https://ramiresclinicaintegrada.com.br/#sobre",
+    "image": "https://ramiresclinicaintegrada.com.br/img/dra-erika.jpg",
+    "knowsAbout": ["Odontopediatria", "Transtorno do Espectro Autista", "Síndrome de Down", "Saúde Bucal Infantil", "Pacientes com Necessidades Especiais"],
+    "sameAs": ["https://www.instagram.com/draerikaramires"]
   }
   </script>
 
@@ -1242,7 +1282,13 @@
 
       <!-- Copyright -->
       <div class="border-t border-white/10 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-        <p class="text-white/40 text-sm">&copy; 2026 Dra. Érika Ramires — Odontologia Infantil. Todos os direitos reservados.</p>
+        <div class="text-center sm:text-left">
+          <p class="text-white/40 text-sm">&copy; 2026 Ramires Clínica Integrada. Todos os direitos reservados.</p>
+          <p class="text-white/30 text-xs mt-1">
+            Dra. Érika Ramires &mdash;
+            <a href="https://www.cro-sp.org.br/servicos/consulta-de-profissionais/?inscricao=116193" target="_blank" rel="noopener noreferrer" class="hover:text-accent transition-colors" aria-label="Verificar registro CRO-SP 116193 da Dra. Érika Ramires">CRO-SP 116193</a>
+          </p>
+        </div>
         <a href="politica-privacidade.html" class="text-white/40 text-sm hover:text-accent transition-colors">Política de Privacidade</a>
       </div>
     </div>
