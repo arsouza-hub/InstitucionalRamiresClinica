@@ -207,11 +207,13 @@
        ============================================ -->
   <header id="main-header" class="header" role="banner">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex items-center justify-between h-20 lg:h-24 overflow-visible">
-        <!-- Logo -->
-        <a href="#" class="self-start flex-shrink-0 z-50 relative pt-1" aria-label="Dra. Érika Ramires - Página Inicial">
+      <div class="flex items-center justify-between h-20 lg:h-24 overflow-visible relative">
+        <!-- Logo — absoluto: não afeta a altura do navbar -->
+        <a href="#" class="absolute left-0 top-1/2 -translate-y-1/2 z-50" aria-label="Dra. Érika Ramires - Página Inicial">
           <img src="img/logo_new.png" alt="Logo Dra. Érika Ramires" class="w-48 h-48 lg:w-56 lg:h-56 object-contain" style="filter: drop-shadow(0 0 8px rgba(255,255,255,0.95)) drop-shadow(0 0 16px rgba(255,255,255,0.6));">
         </a>
+        <!-- Espaçador invisível para os itens de nav não sobreporem o logo -->
+        <div class="w-52 lg:w-60 flex-shrink-0"></div>
 
         <!-- Desktop Navigation -->
         <nav class="hidden lg:flex items-center gap-8" aria-label="Navegação principal">
