@@ -1117,32 +1117,6 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-/* ============================================
-   LOADING ANIMATION
-   ============================================ */
-.page-loader {
-  position: fixed;
-  inset: 0;
-  background: white;
-  z-index: 99999;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: opacity 0.5s, visibility 0.5s;
-}
-.page-loader.hidden {
-  opacity: 0;
-  visibility: hidden;
-}
-.loader-cloud {
-  animation: float 2s ease-in-out infinite;
-}
-.loader-cloud svg {
-  width: 80px;
-  height: 80px;
-  color: var(--primary);
-}
-
 /* Instagram Embeds */
 .instagram-embed-wrapper {
   width: 100%;

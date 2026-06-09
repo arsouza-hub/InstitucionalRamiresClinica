@@ -5,7 +5,6 @@
 
 document.addEventListener('DOMContentLoaded', () => {
   // Initialize all modules
-  PageLoader.init();
   ScrollAnimations.init();
   StickyHeader.init();
   MobileMenu.init();
@@ -17,29 +16,6 @@ document.addEventListener('DOMContentLoaded', () => {
   ActiveNav.init();
   InstagramAutoPause.init();
 });
-
-/* ============================================
-   PAGE LOADER
-   ============================================ */
-const PageLoader = {
-  init() {
-    const loader = document.getElementById('page-loader');
-    if (!loader) return;
-    
-    window.addEventListener('load', () => {
-      setTimeout(() => {
-        loader.classList.add('hidden');
-        setTimeout(() => loader.remove(), 500);
-      }, 600);
-    });
-
-    // Fallback: remove after 3s max
-    setTimeout(() => {
-      loader.classList.add('hidden');
-      setTimeout(() => loader.remove(), 500);
-    }, 3000);
-  }
-};
 
 /* ============================================
    SCROLL ANIMATIONS (IntersectionObserver)
